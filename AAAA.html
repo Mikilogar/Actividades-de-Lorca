@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homenaje a Federico García Lorca</title>
+  <style>
+    /* Reset y estilos globales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #1a1a1a;
+      color: #f4f4f4;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    /* Navegación */
+    nav {
+      background: #333;
+      padding: 10px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 10px;
+    }
+    nav ul li a {
+      color: #f4f4f4;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ffd700;
+    }
+    .spacer {
+      height: 60px;
+    }
+    /* Header */
+    header {
+      background: url('https://via.placeholder.com/1600x900/333333/ffffff?text=Homenaje+Lorca') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px #000;
+    }
+    header p {
+      font-size: 1.5em;
+      text-shadow: 1px 1px 3px #000;
+    }
+    /* Secciones */
+    section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5em;
+      color: #ffd700;
+    }
+    .bio p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      text-align: justify;
+    }
+    .poema {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      margin: 20px auto;
+      width: 80%;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .poema:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .poema h3 {
+      margin: 0;
+    }
+    .verso {
+      display: none;
+      font-style: italic;
+      font-size: 1.2em;
+      color: #ffd700;
+      margin-top: 10px;
+    }
+    /* Botones y contenedores */
+    .generador, .quiz, .pinta {
+      text-align: center;
+      margin-top: 40px;
+    }
+    button {
+      background: #ffd700;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #ffc107;
+    }
+    /* Quiz */
+    .quiz form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .quiz form div {
+      margin-bottom: 20px;
+    }
+    .quiz label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .quiz input[type="radio"] {
+      margin-right: 10px;
+    }
+    /* Pintar a Lorca (antes Dibuja a Lorca) */
+    .canvas-container {
+      text-align: center;
+    }
+    #drawingCanvas {
+      border: 2px solid #ffd700;
+      border-radius: 10px;
+      cursor: crosshair;
+    }
+    /* Selector de color */
+    .color-picker {
+      text-align: center;
+      margin-top: 10px;
+    }
+    /* Video */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.7);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    /* Footer */
+    footer {
+      background: #222;
+      text-align: center;
+      padding: 20px;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navegación -->
+  <nav>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#biografia">Biografía</a></li>
+      <li><a href="#poemas">Obra</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#pinta">Pinta a Lorca</a></li>
+      <li><a href="#video">Video</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  
+  <div class="spacer"></div>
+  
+  <!-- Header -->
+  <header id="inicio">
+    <h1>Homenaje a Federico García Lorca</h1>
+    <p>"La poesía no quiere adeptos, quiere amantes."</p>
+  </header>
+  
+  <!-- Biografía con texto ampliado -->
+  <section id="biografia" class="bio">
+    <h2 class="section-title">Biografía</h2>
+    <p>
+      Federico García Lorca nació el 5 de junio de 1898 en Fuente Vaqueros, un pequeño pueblo de la provincia de Granada. Proveniente de una familia de tradición y arraigo andaluz, desde muy joven mostró un gran interés por la cultura, la música y la poesía, lo que marcaría el rumbo de su vida.
+    </p>
+    <p>
+      Durante su juventud, Lorca se trasladó a Granada para estudiar y profundizar en las artes. Fue allí donde se empapó del folclore andaluz, de sus costumbres y tradiciones, elementos que posteriormente se reflejarían de manera vibrante en su obra. Su capacidad para fusionar lo popular y lo clásico, lo místico y lo real, lo convirtió en un poeta único y original.
+    </p>
+    <p>
+      A lo largo de su carrera, Federico García Lorca destacó tanto en la poesía como en el teatro. Entre sus obras más reconocidas se encuentran <em>Romancero Gitano</em>, una colección de poemas que evocan la vida y la cultura del pueblo gitano, y sus trágicas obras teatrales como <em>Bodas de Sangre</em> y <em>La Casa de Bernarda Alba</em>, en las cuales exploró temas como la pasión, la represión y el destino trágico.
+    </p>
+    <p>
+      Su obra se caracteriza por el uso del simbolismo y el duende, ese misterio y fuerza vital que Lorca describía como el motor de la creación artística. Esta noción del duende no solo define la estética de sus obras, sino también la intensidad emocional que transmite en cada verso y cada escena.
+    </p>
+    <p>
+      La influencia de Lorca trasciende fronteras y generaciones. Su trágico destino, marcado por su asesinato al inicio de la Guerra Civil Española en 1936, ha contribuido a mitificar su figura, convirtiéndolo en un símbolo de la lucha por la libertad y la expresión artística.
+    </p>
+    <p>
+      Hoy, Federico García Lorca sigue siendo una fuente inagotable de inspiración para artistas, poetas y dramaturgos, y su legado continúa iluminando el camino de quienes buscan en el arte una forma de entender la vida y la pasión humana.
+    </p>
+  </section>
+  
+  <!-- Obra Poética -->
+  <section id="poemas">
+    <h2 class="section-title">Obra Poética</h2>
+    <div class="poema" onmouseover="mostrarTexto(this)" onmouseout="ocultarTexto(this)">
+      <h3>La Luna</h3>
+      <p class="verso">"La luna vino a la fragua con su polisón de nardos."</p>
+    </div>
+    <div class="poema" onmouseover="mostrarTexto(this)" onmouseout="ocultarTexto(this)">
+      <h3>El Caballo</h3>
+      <p class="verso">"El caballo, solo en la sombra, relinchaba hacia el horizonte."</p>
+    </div>
+    <div class="poema" onmouseover="mostrarTexto(this)" onmouseout="ocultarTexto(this)">
+      <h3>El Duende</h3>
+      <p class="verso">"El duende no está en la garganta; el duende sube por dentro."</p>
+    </div>
+    <div class="generador">
+      <h2>Generador de Versos Lorquianos</h2>
+      <button onclick="generarVerso()">Generar Verso</button>
+      <p id="verso-generado">Haz clic para obtener un verso inspirado en Lorca.</p>
+    </div>
+  </section>
+  
+  <!-- Quiz Interactivo -->
+  <section id="quiz">
+    <h2 class="section-title">Quiz Interactivo</h2>
+    <div class="quiz">
+      <form id="quizForm" onsubmit="return submitQuiz()">
+        <!-- Pregunta 1 -->
+        <div>
+          <label>1. ¿En qué año nació Federico García Lorca?</label>
+          <label><input type="radio" name="q1" value="1898"> 1898</label>
+          <label><input type="radio" name="q1" value="1900"> 1900</label>
+          <label><input type="radio" name="q1" value="1875"> 1875</label>
+          <label><input type="radio" name="q1" value="1910"> 1910</label>
+        </div>
+        <!-- Pregunta 2 -->
+        <div>
+          <label>2. ¿Cuál es una de las obras de Lorca?</label>
+          <label><input type="radio" name="q2" value="Cien años de soledad"> Cien años de soledad</label>
+          <label><input type="radio" name="q2" value="Don Quijote"> Don Quijote</label>
+          <label><input type="radio" name="q2" value="Romancero Gitano"> Romancero Gitano</label>
+          <label><input type="radio" name="q2" value="La Celestina"> La Celestina</label>
+        </div>
+        <!-- Pregunta 3 -->
+        <div>
+          <label>3. ¿Qué representa el "duende" en la obra de Lorca?</label>
+          <label><input type="radio" name="q3" value="Alegría"> Alegría</label>
+          <label><input type="radio" name="q3" value="Tristeza"> Tristeza</label>
+          <label><input type="radio" name="q3" value="Indiferencia"> Indiferencia</label>
+          <label><input type="radio" name="q3" value="Misterio y pasión"> Misterio y pasión</label>
+        </div>
+        <div style="text-align: center;">
+          <button type="submit">Enviar Quiz</button>
+        </div>
+      </form>
+      <div id="quizResult" style="margin-top: 20px; font-size: 1.2em;"></div>
+    </div>
+  </section>
+  
+  <!-- Pinta a Lorca -->
+  <section id="pinta" class="pinta">
+    <h2 class="section-title">Pinta a Lorca</h2>
+    <p style="text-align: center;">Pinta sobre la silueta de Lorca y elige el color que prefieras.</p>
+    <div class="canvas-container">
+      <canvas id="drawingCanvas" width="800" height="600"></canvas>
+    </div>
+    <!-- Selector de color -->
+    <div class="color-picker">
+      <label for="colorPicker">Elige un color: </label>
+      <input type="color" id="colorPicker" value="#ffd700">
+    </div>
+    <div style="text-align: center; margin-top: 10px;">
+      <button onclick="clearCanvas()">Limpiar Pintura</button>
+    </div>
+  </section>
+  
+  <!-- Video Homenaje -->
+  <section id="video">
+    <h2 class="section-title">Video Homenaje</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/_N8-spAevS8?si=FBy-OehC__QCyC-Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </section>
+  
+  <!-- Contacto -->
+  <section id="contacto" class="contacto">
+    <h2 class="section-title">Contacto</h2>
+    <p>¿Tienes sugerencias o deseas colaborar en este homenaje? Escríbenos a <a href="mailto:miguellopeziesvb@gmail.com">miguellopeziesvb@gmail.com</a> y hablemos de arte y poesía.</p>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Homenaje a Federico García Lorca. Todos los derechos reservados.</p>
+  </footer>
+  
+  <!-- Scripts -->
+  <script>
+    // Funciones para mostrar y ocultar versos al pasar el cursor
+    function mostrarTexto(elemento) {
+      const verso = elemento.querySelector('.verso');
+      verso.style.display = 'block';
+    }
+    function ocultarTexto(elemento) {
+      const verso = elemento.querySelector('.verso');
+      verso.style.display = 'none';
+    }
+    // Generador de versos aleatorios
+    function generarVerso() {
+      const versos = [
+        "El aire muere de amor entre los álamos.",
+        "La sombra de mi alma huye por un campo de zarzas.",
+        "El agua canta y sueña con caballos dormidos.",
+        "Mi corazón es un árbol de ceniza y esperanza.",
+        "Llanto y guitarras rompen la noche granadina.",
+        "Y cuando te vi de lejos me eché en los ojos arena, pero montaba a caballo y el caballo iba a tu puerta."
+      ];
+      const versoAleatorio = versos[Math.floor(Math.random() * versos.length)];
+      document.getElementById("verso-generado").innerText = versoAleatorio;
+    }
+    
+    // Quiz Interactivo
+    function submitQuiz() {
+      const form = document.getElementById("quizForm");
+      let score = 0;
+      // Respuestas correctas
+      const correctAnswers = {
+        q1: "1898",
+        q2: "Romancero Gitano",
+        q3: "Misterio y pasión"
+      };
+      // Verificar respuestas
+      for (let key in correctAnswers) {
+        const radios = document.getElementsByName(key);
+        for (let radio of radios) {
+          if (radio.checked && radio.value === correctAnswers[key]) {
+            score++;
+          }
+        }
+      }
+      document.getElementById("quizResult").innerText = "Tu puntuación es: " + score + " de 3";
+      return false; // Prevenir envío del formulario
+    }
+    
+    // Herramienta de Pintura
+    const canvas = document.getElementById("drawingCanvas");
+    const ctx = canvas.getContext("2d");
+    let drawing = false;
+    let lastX = 0;
+    let lastY = 0;
+    // Variable para el color actual
+    let currentColor = "#ffd700";
+    
+    // Actualizar color al cambiar el selector
+    document.getElementById("colorPicker").addEventListener("input", function() {
+      currentColor = this.value;
+    });
+    
+    // Cargar imagen de la silueta de Lorca (imagen SVG embebida en Base64)
+    const silhouette = new Image();
+    silhouette.src = "https://i.pinimg.com/736x/87/5f/c1/875fc187df982ea4293de79c694fe504.jpg";
+    silhouette.onload = function() {
+      ctx.drawImage(silhouette, 0, 0, canvas.width, canvas.height);
+    };
+    
+    canvas.addEventListener("mousedown", (e) => {
+      drawing = true;
+      [lastX, lastY] = [e.offsetX, e.offsetY];
+    });
+    
+    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener("mouseup", () => drawing = false);
+    canvas.addEventListener("mouseout", () => drawing = false);
+    
+    function draw(e) {
+      if (!drawing) return;
+      ctx.strokeStyle = currentColor;
+      ctx.lineWidth = 3;
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
+      
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+      [lastX, lastY] = [e.offsetX, e.offsetY];
+    }
+    
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(silhouette, 0, 0, canvas.width, canvas.height);
+    }
+  </script>
+</body>
+</html>
